@@ -1,0 +1,42 @@
+groups:
+  - name: super-biz-agent.rules
+    rules:
+      - alert: SuperBizAgentDown
+        expr: up{job="super-biz-agent"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: super-biz-agent
+        annotations:
+          summary: SuperBizAgent 主服务不可用
+          description: Prometheus 连续 1 分钟无法抓取 SuperBizAgent /metrics。
+
+      - alert: SuperBizAgentHighCPU
+        expr: super_biz_agent_system_cpu_percent > 80
+        for: 2m
+        labels:
+          severity: warning
+          service: super-biz-agent
+        annotations:
+          summary: SuperBizAgent 所在机器 CPU 使用率过高
+          description: 系统 CPU 使用率连续 2 分钟超过 80%。
+
+      - alert: SuperBizAgentHighMemory
+        expr: super_biz_agent_system_memory_percent > 80
+        for: 2m
+        labels:
+          severity: warning
+          service: super-biz-agent
+        annotations:
+          summary: SuperBizAgent 所在机器内存使用率过高
+          description: 系统内存使用率连续 2 分钟超过 80%。
+
+      - alert: SuperBizAgentHighDisk
+        expr: super_biz_agent_system_disk_percent > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: super-biz-agent
+        annotations:
+          summary: SuperBizAgent 所在机器磁盘使用率过高
+          description: 磁盘使用率连续 5 分钟超过 85%。

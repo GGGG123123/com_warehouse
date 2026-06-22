@@ -1,0 +1,23 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets:
+          - localhost:9090
+
+  # 如果 Prometheus 用 Docker 启动，而 FastAPI 主程序运行在 Windows 宿主机，
+  # 使用 host.docker.internal 访问宿主机端口。
+  - job_name: super-biz-agent
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - host.docker.internal:9900
+        labels:
+          service: super-biz-agent
+          namespace: local

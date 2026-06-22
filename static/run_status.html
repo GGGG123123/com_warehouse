@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuperBizAgent 运行检测结果</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f6f8fb;
+      color: #1f2937;
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+    }
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 44px 36px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 0 0 28px;
+      color: #6b7280;
+      font-size: 16px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .card, section {
+      background: #fff;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+    }
+    .card {
+      padding: 18px 20px;
+    }
+    .label {
+      color: #6b7280;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .value {
+      color: #11845b;
+      font-size: 24px;
+      font-weight: 760;
+    }
+    section {
+      padding: 22px;
+      margin-top: 16px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #dbe3ef;
+      text-align: left;
+    }
+    th {
+      color: #6b7280;
+      background: #f9fbfe;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    code {
+      padding: 2px 6px;
+      border: 1px solid #dbe3ef;
+      border-radius: 6px;
+      background: #f8fafc;
+      font-family: Consolas, monospace;
+    }
+    .badge {
+      display: inline-flex;
+      padding: 3px 10px;
+      border-radius: 999px;
+      color: #11845b;
+      background: #e9f8f1;
+      border: 1px solid #b9e8d3;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SuperBizAgent 运行检测结果</h1>
+    <p class="subtitle">检测时间：2026-06-22，本地环境：Windows + Docker + FastAPI + Milvus</p>
+
+    <div class="summary">
+      <div class="card">
+        <div class="label">Web 服务</div>
+        <div class="value">已启动</div>
+      </div>
+      <div class="card">
+        <div class="label">健康检查</div>
+        <div class="value">200 OK</div>
+      </div>
+      <div class="card">
+        <div class="label">向量数据库</div>
+        <div class="value">Healthy</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>服务访问结果</h2>
+      <table>
+        <thead>
+          <tr><th>检查项</th><th>地址</th><th>结果</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Web 页面</td><td><code>http://localhost:9900</code></td><td><span class="badge">可访问</span></td></tr>
+          <tr><td>健康检查接口</td><td><code>http://localhost:9900/health</code></td><td><span class="badge">200 OK</span></td></tr>
+          <tr><td>API 文档</td><td><code>http://localhost:9900/docs</code></td><td><span class="badge">可访问</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Docker 组件状态</h2>
+      <table>
+        <thead>
+          <tr><th>组件</th><th>运行状态</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>super-biz-agent-prometheus</td><td><span class="badge">Up</span></td></tr>
+          <tr><td>milvus-standalone</td><td><span class="badge">Up / healthy</span></td></tr>
+          <tr><td>milvus-etcd</td><td><span class="badge">Up / healthy</span></td></tr>
+          <tr><td>milvus-minio</td><td><span class="badge">Up / healthy</span></td></tr>
+          <tr><td>milvus-attu</td><td><span class="badge">Up</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

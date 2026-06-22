@@ -1,0 +1,271 @@
+# 大规模运维 RAG 资料源清单
+# type: github_repo | web_page | sitemap
+sources:
+  # Kubernetes / Cloud Native
+  - name: kubernetes_website
+    type: github_repo
+    domain: kubernetes
+    url: https://github.com/kubernetes/website.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["content/en/docs", "troubleshoot", "debug", "kubectl", "pod", "service", "node", "storage", "ingress"]
+  - name: kubernetes_docs_site
+    type: sitemap
+    domain: kubernetes
+    url: https://kubernetes.io/sitemap.xml
+    include_keywords: ["/docs/", "troubleshoot", "debug", "pod", "service", "node", "kubectl"]
+  - name: kubernetes_examples
+    type: github_repo
+    domain: kubernetes
+    url: https://github.com/kubernetes/examples.git
+    include_ext: [".md", ".yaml", ".yml", ".json"]
+  - name: helm_docs
+    type: github_repo
+    domain: helm
+    url: https://github.com/helm/helm-www.git
+    include_ext: [".md", ".yaml", ".yml"]
+  - name: ingress_nginx
+    type: github_repo
+    domain: kubernetes
+    url: https://github.com/kubernetes/ingress-nginx.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "deploy", "troubleshooting", "faq", "examples"]
+
+  # Docker / Containers
+  - name: docker_docs
+    type: github_repo
+    domain: docker
+    url: https://github.com/docker/docs.git
+    include_ext: [".md", ".yaml", ".yml", ".json"]
+    include_keywords: ["content", "manuals", "engine", "compose", "logs", "troubleshoot", "network", "storage"]
+  - name: docker_library_docs
+    type: github_repo
+    domain: docker
+    url: https://github.com/docker-library/docs.git
+    include_ext: [".md"]
+  - name: compose_spec
+    type: github_repo
+    domain: docker
+    url: https://github.com/compose-spec/compose-spec.git
+    include_ext: [".md", ".yaml", ".yml"]
+
+  # Linux / systemd / shell
+  - name: systemd_man
+    type: github_repo
+    domain: linux
+    url: https://github.com/systemd/systemd.git
+    include_ext: [".md", ".xml", ".conf", ".service"]
+    include_keywords: ["man", "docs", "systemctl", "journalctl", "service", "unit"]
+  - name: linux_man_pages
+    type: github_repo
+    domain: linux
+    url: https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git
+    include_ext: [".1", ".2", ".3", ".4", ".5", ".7", ".8", ".txt"]
+    include_keywords: ["journalctl", "systemd", "mount", "network", "socket", "proc", "syslog"]
+  - name: tldr_pages
+    type: github_repo
+    domain: linux
+    url: https://github.com/tldr-pages/tldr.git
+    include_ext: [".md"]
+    include_keywords: ["pages/common", "pages/linux"]
+
+  # Nginx / Proxy / Gateway
+  - name: nginx_docs_site
+    type: sitemap
+    domain: nginx
+    url: https://nginx.org/sitemap.xml
+    include_keywords: ["docs", "proxy", "load", "ssl", "log", "debug", "control", "config"]
+  - name: nginx_kubernetes_gateway
+    type: github_repo
+    domain: nginx
+    url: https://github.com/nginx/nginx-gateway-fabric.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "examples", "troubleshooting"]
+  - name: envoy_docs
+    type: github_repo
+    domain: envoy
+    url: https://github.com/envoyproxy/envoy.git
+    include_ext: [".md", ".rst", ".yaml", ".yml"]
+    include_keywords: ["docs/root", "examples", "faq", "operations"]
+  - name: haproxy_docs
+    type: github_repo
+    domain: haproxy
+    url: https://github.com/haproxy/haproxy.git
+    include_ext: [".txt", ".md", ".cfg"]
+    include_keywords: ["doc", "examples"]
+
+  # Monitoring / Alerting / Logging
+  - name: prometheus_docs
+    type: github_repo
+    domain: prometheus
+    url: https://github.com/prometheus/docs.git
+    include_ext: [".md", ".yml", ".yaml"]
+  - name: prometheus_repo
+    type: github_repo
+    domain: prometheus
+    url: https://github.com/prometheus/prometheus.git
+    include_ext: [".md", ".yml", ".yaml", ".json"]
+    include_keywords: ["docs", "documentation", "examples", "rules", "alerts"]
+  - name: alertmanager
+    type: github_repo
+    domain: prometheus
+    url: https://github.com/prometheus/alertmanager.git
+    include_ext: [".md", ".yml", ".yaml"]
+    include_keywords: ["docs", "examples", "configuration"]
+  - name: node_exporter
+    type: github_repo
+    domain: prometheus
+    url: https://github.com/prometheus/node_exporter.git
+    include_ext: [".md", ".yml", ".yaml"]
+  - name: kube_state_metrics
+    type: github_repo
+    domain: prometheus
+    url: https://github.com/kubernetes/kube-state-metrics.git
+    include_ext: [".md", ".yaml", ".yml"]
+  - name: grafana_docs
+    type: github_repo
+    domain: grafana
+    url: https://github.com/grafana/grafana.git
+    include_ext: [".md", ".yml", ".yaml", ".json"]
+    include_keywords: ["docs/sources", "devenv", "contribute", "troubleshooting", "alerting"]
+  - name: loki
+    type: github_repo
+    domain: loki
+    url: https://github.com/grafana/loki.git
+    include_ext: [".md", ".yaml", ".yml", ".json"]
+    include_keywords: ["docs/sources", "production", "operations", "troubleshooting", "examples"]
+  - name: opentelemetry_docs
+    type: github_repo
+    domain: observability
+    url: https://github.com/open-telemetry/opentelemetry.io.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["content/en/docs", "collector", "troubleshooting", "logs", "metrics", "traces"]
+
+  # Databases
+  - name: redis_docs
+    type: github_repo
+    domain: redis
+    url: https://github.com/redis/redis-doc.git
+    include_ext: [".md", ".json", ".yml", ".yaml"]
+    include_keywords: ["docs", "commands", "topics", "management", "troubleshooting", "persistence", "security"]
+  - name: redis_repo
+    type: github_repo
+    domain: redis
+    url: https://github.com/redis/redis.git
+    include_ext: [".md", ".conf", ".txt"]
+    include_keywords: ["README", "redis.conf", "sentinel.conf", "TLS", "cluster"]
+  - name: mysql_docs
+    type: sitemap
+    domain: mysql
+    url: https://dev.mysql.com/doc/refman/8.4/en/sitemap.xml
+    include_keywords: ["backup", "recovery", "replication", "slow", "log", "innodb", "lock", "performance", "mysqldump"]
+  - name: postgres_docs
+    type: sitemap
+    domain: postgresql
+    url: https://www.postgresql.org/docs/current/sitemap.xml
+    include_keywords: ["backup", "wal", "replication", "pg_basebackup", "monitoring", "vacuum", "log", "high-availability"]
+  - name: mongodb_docs
+    type: github_repo
+    domain: mongodb
+    url: https://github.com/mongodb/docs.git
+    include_ext: [".txt", ".rst", ".md", ".yaml", ".yml"]
+    include_keywords: ["source", "replica", "sharding", "backup", "restore", "monitoring", "troubleshoot"]
+  - name: elastic_docs_content
+    type: github_repo
+    domain: elasticsearch
+    url: https://github.com/elastic/docs-content.git
+    include_ext: [".md", ".asciidoc", ".yaml", ".yml"]
+    include_keywords: ["serverless", "elasticsearch", "troubleshoot", "red", "yellow", "watermark", "snapshot", "restore"]
+  - name: elasticsearch_repo
+    type: github_repo
+    domain: elasticsearch
+    url: https://github.com/elastic/elasticsearch.git
+    include_ext: [".asciidoc", ".md", ".yml", ".yaml"]
+    include_keywords: ["docs", "distribution", "config", "examples"]
+
+  # CI/CD / GitOps
+  - name: gitlab_runbooks
+    type: github_repo
+    domain: runbook
+    url: https://gitlab.com/gitlab-com/runbooks.git
+    include_ext: [".md", ".yml", ".yaml", ".json"]
+    include_keywords: ["docs", "alerts", "runbook", "monitoring", "dashboards", "services"]
+  - name: argo_cd
+    type: github_repo
+    domain: argocd
+    url: https://github.com/argoproj/argo-cd.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "examples", "operator-manual", "user-guide", "troubleshooting"]
+  - name: flux2
+    type: github_repo
+    domain: gitops
+    url: https://github.com/fluxcd/flux2.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "manifests", "examples"]
+  - name: jenkins_docs
+    type: github_repo
+    domain: cicd
+    url: https://github.com/jenkins-infra/jenkins.io.git
+    include_ext: [".adoc", ".md", ".yml", ".yaml"]
+    include_keywords: ["content/doc", "pipeline", "install", "manage", "troubleshooting"]
+  - name: github_actions_docs
+    type: github_repo
+    domain: cicd
+    url: https://github.com/github/docs.git
+    include_ext: [".md", ".yml", ".yaml"]
+    include_keywords: ["content/actions", "troubleshooting", "runner", "workflow"]
+
+  # Infrastructure as Code
+  - name: ansible_docs
+    type: github_repo
+    domain: ansible
+    url: https://github.com/ansible/ansible-documentation.git
+    include_ext: [".rst", ".md", ".yaml", ".yml"]
+  - name: terraform_docs
+    type: github_repo
+    domain: terraform
+    url: https://github.com/hashicorp/terraform-website.git
+    include_ext: [".md", ".mdx", ".yaml", ".yml"]
+  - name: opentofu_docs
+    type: github_repo
+    domain: terraform
+    url: https://github.com/opentofu/opentofu.org.git
+    include_ext: [".md", ".mdx", ".yaml", ".yml"]
+
+  # Cloud docs: selective sitemap crawl
+  - name: aws_docs_ec2
+    type: sitemap
+    domain: aws
+    url: https://docs.aws.amazon.com/sitemap_index.xml
+    include_keywords: ["AWSEC2", "EC2", "CloudWatch", "EKS", "RDS", "ELB", "troubleshoot", "monitoring", "logs"]
+  - name: azure_aks_docs
+    type: github_repo
+    domain: azure
+    url: https://github.com/MicrosoftDocs/azure-docs.git
+    include_ext: [".md", ".yml", ".yaml"]
+    include_keywords: ["articles/aks", "articles/azure-monitor", "articles/load-balancer", "troubleshoot"]
+  - name: google_cloud_docs
+    type: github_repo
+    domain: gcp
+    url: https://github.com/GoogleCloudPlatform/cloud-docs-samples.git
+    include_ext: [".md", ".yaml", ".yml", ".json"]
+    include_keywords: ["kubernetes", "monitoring", "logging", "cloud-sql", "compute"]
+
+  # Security / TLS / Network
+  - name: cert_manager
+    type: github_repo
+    domain: security
+    url: https://github.com/cert-manager/cert-manager.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "troubleshooting", "examples", "certificates", "issuer"]
+  - name: cilium
+    type: github_repo
+    domain: network
+    url: https://github.com/cilium/cilium.git
+    include_ext: [".rst", ".md", ".yaml", ".yml"]
+    include_keywords: ["Documentation", "troubleshooting", "kubernetes", "network", "policy"]
+  - name: calico_docs
+    type: github_repo
+    domain: network
+    url: https://github.com/projectcalico/calico.git
+    include_ext: [".md", ".yaml", ".yml"]
+    include_keywords: ["docs", "troubleshoot", "network", "policy"]

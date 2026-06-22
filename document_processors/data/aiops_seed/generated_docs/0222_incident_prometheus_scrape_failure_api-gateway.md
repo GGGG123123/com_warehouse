@@ -1,0 +1,54 @@
+# api-gateway - PrometheusScrapeFailure 故障案例
+
+## 元数据
+
+- 文档ID: `AIOPS-INCIDENT-0222-prometheus_scrape_failure-api-gateway`
+- 数据类型: `aiops_incident_case`
+- 告警名称: `PrometheusScrapeFailure`
+- 告警分类: `监控异常`
+- 告警级别: `warning`
+- 受影响服务: `api-gateway`
+- 命名空间: `prod`
+- 责任团队: `platform-team`
+
+## 事件摘要
+
+`api-gateway` 触发 `PrometheusScrapeFailure`，触发条件为：Prometheus target scrape 失败率连续 10 分钟超过 20%。
+用户侧表现为：指标缺失，告警可能失真，监控看板出现断点。
+
+## 关键证据
+
+### 指标证据
+
+- 推荐查询: `up{job="$job"} == 0`
+- 异常现象: 告警窗口内指标持续高于阈值，且与服务错误率或延迟变化时间一致。
+
+### 日志证据
+
+- 推荐查询: `scrape failed OR context deadline exceeded`
+- 日志主题: `application-logs`
+- 证据模式: 日志中出现与 `PrometheusScrapeFailure` 相关的错误、超时、资源耗尽或重试记录。
+
+## 根因判断
+
+本案例的优先根因判断为：网络策略或安全组阻断
+
+## 处置过程
+
+1. 修复网络策略或服务发现配置
+2. 减少高基数指标暴露
+3. 根据指标和日志证据确认影响范围，只处理异常实例或异常链路。
+4. 处置后持续观察 30 分钟，避免故障反复。
+
+## 恢复验证
+
+- target up 恢复为 1
+- 告警状态恢复 normal 或不再 firing。
+- 业务核心指标恢复到历史基线范围。
+
+## 复盘关注点
+
+- 告警是否足够早触发。
+- 日志中是否能直接定位根因。
+- 是否需要增加自动化恢复动作。
+- 是否需要补充 runbook、监控指标或压测用例。
