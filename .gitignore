@@ -53,6 +53,7 @@ poetry.lock
 # Logs
 logs/
 /data/run_logs/
+reports/demo_assets/*_capture.txt
 *.log
 *.pid
 

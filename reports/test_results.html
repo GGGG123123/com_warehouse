@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuperBizAgent 用例执行结果</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #182033;
+      --muted: #687389;
+      --line: #dce4f2;
+      --ok: #0f7b55;
+      --warn: #b45309;
+      --blue: #2458d3;
+      --soft-ok: #eaf8f1;
+      --soft-warn: #fff7ed;
+      --soft-blue: #edf4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 34px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 21px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    code {
+      display: inline-block;
+      max-width: 100%;
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f8fafc;
+      color: #1f2937;
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .notice {
+      margin: 18px 0 22px;
+      padding: 14px 16px;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      background: var(--soft-warn);
+      color: #7c2d12;
+      font-weight: 650;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric,
+    .panel,
+    .case {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 24px rgba(24, 32, 51, 0.06);
+    }
+
+    .metric {
+      padding: 16px 18px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: 23px;
+      font-weight: 760;
+    }
+
+    .panel {
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 9px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      background: #f9fbfe;
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .pass {
+      color: var(--ok);
+      background: var(--soft-ok);
+      border: 1px solid #b9e8d3;
+    }
+
+    .partial {
+      color: var(--warn);
+      background: var(--soft-warn);
+      border: 1px solid #fed7aa;
+    }
+
+    .info {
+      color: var(--blue);
+      background: var(--soft-blue);
+      border: 1px solid #bfd5ff;
+    }
+
+    .cases {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .case {
+      padding: 16px;
+    }
+
+    .case-meta {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr);
+      gap: 6px 10px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .case-meta dt {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .case-meta dd {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .answer {
+      margin-top: 12px;
+      padding: 12px;
+      border-left: 4px solid var(--blue);
+      background: #f8fbff;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .asset-row {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .asset-row img {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      .summary,
+      .cases,
+      .asset-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>SuperBizAgent 用例执行结果</h1>
+    <p class="subtitle">实测时间：2026-06-22 22:09-22:25，环境：Windows + Docker + FastAPI + Milvus + DashScope。</p>
+
+    <div class="notice">
+      说明：下面的 localhost 地址是本地复现地址，不是公网 Demo 地址。面试官无法直接访问这些链接，但可以通过仓库代码、报告截图和 README 步骤复现同样结果。
+    </div>
+
+    <section class="summary" id="overview">
+      <div class="metric">
+        <div class="metric-label">服务健康检查</div>
+        <div class="metric-value">200 OK</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Milvus 连接</div>
+        <div class="metric-value">connected</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">业务用例</div>
+        <div class="metric-value">10 项</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">核心链路</div>
+        <div class="metric-value">已跑通</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>执行总览</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>用例</th>
+            <th>接口/页面</th>
+            <th>输入</th>
+            <th>实测结果</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web 首页</td>
+            <td><code>GET /</code></td>
+            <td>浏览器打开首页</td>
+            <td>页面可访问，聊天 UI 正常加载</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>API 文档</td>
+            <td><code>GET /docs</code></td>
+            <td>Swagger UI</td>
+            <td>返回 200 OK，可查看全部接口</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>健康检查</td>
+            <td><code>GET /health</code></td>
+            <td>无</td>
+            <td>服务 healthy，Milvus status=connected</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>监控状态</td>
+            <td><code>GET /api/monitoring/status</code></td>
+            <td>无</td>
+            <td>返回 PID、uptime、CPU、内存、磁盘和线程数</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>Prometheus 指标</td>
+            <td><code>GET /metrics</code></td>
+            <td>无</td>
+            <td>返回 Prometheus 文本格式指标</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>错误日志</td>
+            <td><code>GET /api/monitoring/errors</code></td>
+            <td>无</td>
+            <td>返回 0 条错误日志</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>普通对话</td>
+            <td><code>POST /api/chat</code></td>
+            <td>“请用两句话说明这个系统的核心能力。”</td>
+            <td>10.4s 返回模型回答，success=true</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>文档上传</td>
+            <td><code>POST /api/upload</code></td>
+            <td><code>interview_rag_demo.md</code></td>
+            <td>0.9s 上传成功，size=616 bytes</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>RAG 召回</td>
+            <td><code>POST /api/chat</code></td>
+            <td>询问上传文档里的验收暗号</td>
+            <td>返回 <code>RAG-UPLOAD-PASS-2026</code></td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>多模态识别</td>
+            <td><code>POST /api/chat_multimodal</code></td>
+            <td>上传监控截图 PNG</td>
+            <td>识别 payment-service、CPU 92%、HighCPUUsage</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+          <tr>
+            <td>AIOps 流式诊断</td>
+            <td><code>POST /api/aiops</code></td>
+            <td>session_id=demo-aiops-interview-long</td>
+            <td>收到 status、plan、step_complete、report 事件，最终报告已生成</td>
+            <td><span class="badge pass">通过</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="cases" id="rag">
+      <article class="case">
+        <h3>用例：文档上传并触发 RAG 检索</h3>
+        <p class="small">目标：验证上传文档会被写入知识库，并能被后续对话召回。</p>
+        <dl class="case-meta">
+          <dt>上传文件</dt>
+          <dd><code>reports/demo_assets/interview_rag_demo.md</code></dd>
+          <dt>上传结果</dt>
+          <dd><code>code=200</code>，<code>filename=interview_rag_demo.md</code>，<code>size=616</code></dd>
+          <dt>测试问题</dt>
+          <dd>根据知识库，面试演示知识片段的验收暗号是什么？请只回答暗号。</dd>
+          <dt>返回结果</dt>
+          <dd><code>RAG-UPLOAD-PASS-2026</code></dd>
+        </dl>
+        <div class="answer">
+          结论：这个结果证明“上传 -> 文档切分 -> 向量索引 -> 对话召回”的链路已经跑通。
+        </div>
+      </article>
+
+      <article class="case">
+        <h3>用例：普通模型对话</h3>
+        <p class="small">目标：验证后端可以完成真实 LLM 调用，而不是只打开静态页面。</p>
+        <dl class="case-meta">
+          <dt>接口</dt>
+          <dd><code>POST /api/chat</code></dd>
+          <dt>耗时</dt>
+          <dd><code>10412 ms</code></dd>
+          <dt>状态</dt>
+          <dd><code>code=200</code>，<code>success=true</code></dd>
+        </dl>
+        <div class="answer">
+          返回摘要：这个系统是一个集智能问答与运维监控于一体的 AI 助手，能够从知识库中检索专业知识来解答用户问题，并具备日志查询、指标监控和告警管理能力。
+        </div>
+      </article>
+    </section>
+
+    <section class="panel" id="multimodal">
+      <h2>用例：多模态识别</h2>
+      <div class="asset-row">
+        <img src="demo_assets/multimodal_alert_demo.png" alt="多模态测试输入图">
+        <div>
+          <p class="small">输入问题：请识别这张监控截图中的服务名、异常指标和建议处理方向。</p>
+          <dl class="case-meta">
+            <dt>接口</dt>
+            <dd><code>POST /api/chat_multimodal</code></dd>
+            <dt>模型</dt>
+            <dd><code>qwen-vl-plus</code></dd>
+            <dt>耗时</dt>
+            <dd><code>14716 ms</code></dd>
+            <dt>识别结果</dt>
+            <dd>识别出 <code>payment-service</code>、<code>CPU 92%</code>、<code>Latency 3.8s</code>、<code>HighCPUUsage</code>，并给出检查最近发布和数据库连接池的方向。</dd>
+          </dl>
+          <div class="answer">
+            结论：图片附件被成功编码并提交给多模态模型，模型能读出截图中的关键业务指标。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="aiops">
+      <h2>用例：AIOps 多 Agent 流式诊断</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>输入</th>
+            <td><code>{"session_id":"demo-aiops-interview-long","tenant_id":"demo","user_id":"interview"}</code></td>
+          </tr>
+          <tr>
+            <th>事件类型</th>
+            <td><code>status</code>、<code>plan</code>、<code>step_complete</code>、<code>report</code></td>
+          </tr>
+          <tr>
+            <th>Planner 结果</th>
+            <td>生成 6 个诊断步骤，包括查询 Prometheus 告警、解析告警、关联日志主题、查询日志和指标、生成报告。</td>
+          </tr>
+          <tr>
+            <th>Executor/Replanner 结果</th>
+            <td>步骤执行后进入 replanner，replanner 判断继续执行剩余步骤，最终产生 <code>final_report</code> 事件。</td>
+          </tr>
+          <tr>
+            <th>最终报告摘要</th>
+            <td>检测到 <code>SuperBizAgentHighMemory</code> 和 <code>SuperBizAgentHighDisk</code> 两个 warning/pending 告警，并给出内存排查、磁盘清理、日志轮转和 Docker 清理等建议。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="answer">
+        结论：AIOps 不是单次问答，而是实际返回了 Planner、Executor、Replanner 和 final_report 的流式事件，证明多 Agent workflow 可以运行。
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -6,6 +6,14 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
 [![LangChain](https://img.shields.io/badge/LangChain-latest-orange.svg)](https://www.langchain.com/)
 
+## 面试展示材料
+
+- [项目展示报告](PROJECT_REPORT.md)
+- [用例执行结果页](reports/test_results.html)
+- [运行截图目录](reports/screenshots)
+
+说明：本仓库当前提供的是本地可复现 Demo，README 中的 `localhost` 地址不是公网访问地址。面试官可以查看报告截图，也可以按快速开始步骤在本地启动项目复现结果。
+
 ## ✨ 核心特性
 
 - 🤖 **智能对话** - LangChain 多轮对话 + 流式输出
