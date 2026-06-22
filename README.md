@@ -14,6 +14,24 @@
 
 说明：本仓库当前提供的是本地可复现 Demo，README 中的 `localhost` 地址不是公网访问地址。面试官可以查看报告截图，也可以按快速开始步骤在本地启动项目复现结果。
 
+## 运行效果截图
+
+### Prometheus 告警规则与 firing 告警
+
+![Prometheus 告警规则与 firing 告警](reports/screenshots/08-prometheus-alerts.png)
+
+### AIOps 多 Agent 诊断执行过程
+
+![AIOps 多 Agent 诊断执行过程](reports/screenshots/09-aiops-execution-plan.png)
+
+### AIOps 根因分析报告
+
+![AIOps 根因分析报告](reports/screenshots/10-aiops-root-cause.png)
+
+### 智能 OnCall 助手问答能力
+
+![智能 OnCall 助手问答能力](reports/screenshots/11-chat-tools.png)
+
 ## ✨ 核心特性
 
 - 🤖 **智能对话** - LangChain 多轮对话 + 流式输出
