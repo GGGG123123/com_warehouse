@@ -39,8 +39,7 @@ from typing import Any
 # 输入输出配置
 # =============================================================================
 
-# 当前文件所在目录:
-# C:\Users\Administrator\Desktop\agent源代码\super_biz_agent_py-release-2026-05-17\document_processors
+# 当前文件所在目录。
 CURRENT_DIR = Path(__file__).resolve().parent
 
 # document_processors/data 目录。
@@ -56,7 +55,7 @@ INPUT_JSONL_PATH = DATA_DIR / "aiops_seed" / "aiops_seed_records.jsonl"
 OUTPUT_CHUNKS_PATH = DATA_DIR / "aiops_seed" / "aiops_seed_milvus_chunks.jsonl"
 
 # 单个 chunk 的最大字符数。
-# 你的项目 app/config.py 里 chunk_max_size 是 800，
+# 项目 app/config.py 里 chunk_max_size 是 800，
 # 但当前 DocumentSplitterService 二次切分用了 1600。
 # 这里取 1400，是为了让每个 chunk 内容完整，同时不要太长。
 MAX_CHARS = 1400

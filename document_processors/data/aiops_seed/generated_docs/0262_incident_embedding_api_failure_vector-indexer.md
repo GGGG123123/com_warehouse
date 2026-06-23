@@ -1,4 +1,4 @@
-# vector-indexer - EmbeddingAPIFailureRateHigh 故障案例
+﻿# vector-indexer - EmbeddingAPIFailureRateHigh 故障案例
 
 ## 元数据
 
@@ -25,7 +25,7 @@
 
 ### 日志证据
 
-- 推荐查询: `embedding failed OR DashScope OR rate limit`
+- 推荐查询: `embedding failed OR rate limit`
 - 日志主题: `application-logs`
 - 证据模式: 日志中出现与 `EmbeddingAPIFailureRateHigh` 相关的错误、超时、资源耗尽或重试记录。
 

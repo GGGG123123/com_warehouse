@@ -2,7 +2,7 @@
 
 这个脚本是真正的“入库脚本”，会做三件事:
     1. 读取 aiops_seed_milvus_chunks.jsonl；
-    2. 调用项目里的 DashScope embedding 服务，把 content 转成向量；
+    2. 调用项目里的 embedding 服务，把 content 转成向量；
     3. 写入 Milvus 的 biz collection。
 
 运行前请确认:
@@ -14,7 +14,7 @@
     3. 项目 .env 里已经配置 DASHSCOPE_API_KEY。
 
     4. 推荐使用项目虚拟环境运行:
-        C:\\Users\\Administrator\\Desktop\\agent源代码\\super_biz_agent_py-release-2026-05-17\\.venv\\Scripts\\python.exe document_processors\\aiops_milvus_indexer.py
+        .venv\\Scripts\\python.exe document_processors\\aiops_milvus_indexer.py
 
 说明:
     这个脚本不会再次切分文本。
@@ -39,12 +39,10 @@ from typing import Any
 # 输入配置
 # =============================================================================
 
-# 当前文件所在目录:
-# C:\Users\Administrator\Desktop\agent源代码\super_biz_agent_py-release-2026-05-17\document_processors
+# 当前文件所在目录。
 CURRENT_DIR = Path(__file__).resolve().parent
 
-# 项目根目录:
-# C:\Users\Administrator\Desktop\agent源代码\super_biz_agent_py-release-2026-05-17
+# 项目根目录。
 PROJECT_ROOT = CURRENT_DIR.parent
 
 # document_processors/data 目录。
@@ -54,7 +52,7 @@ DATA_DIR = CURRENT_DIR / "data"
 INPUT_CHUNKS_PATH = DATA_DIR / "aiops_seed" / "aiops_seed_milvus_chunks.jsonl"
 
 # 每批写入多少条。
-# DashScope text-embedding-v4 当前单次最多允许 10 条 input.contents。
+# 当前 embedding 服务单次批量条数限制较小。
 # 这里设置为 10，避免出现 batch size is invalid。
 BATCH_SIZE = 10
 
@@ -288,7 +286,7 @@ def index_chunks_to_milvus() -> None:
     inserted_count = 0
     total_batches = len(document_batches)
 
-    print("开始写入 Milvus，这一步会调用 DashScope embedding，请耐心等待。")
+    print("开始写入 Milvus，这一步会调用 embedding 服务，请耐心等待。")
 
     for batch_index, (document_batch, id_batch) in enumerate(
         zip(document_batches, id_batches), start=1

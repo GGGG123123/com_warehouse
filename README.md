@@ -43,7 +43,7 @@
 ## 🛠️ 技术栈
 
 - **框架**: FastAPI + LangChain + LangGraph
-- **LLM**: 阿里云 DashScope (通义千问)
+- **LLM**: 可配置的大模型服务
 - **向量库**: Milvus
 - **工具协议**: MCP (Model Context Protocol)
 
@@ -51,7 +51,7 @@
 
 ### 环境要求
 - Python 3.10+
-- 阿里云 DashScope API Key ([获取地址](https://dashscope.aliyun.com/))
+- 大模型服务 API Key
 
 ### 安装和启动
 
@@ -267,11 +267,10 @@ super_biz_agent_py/
 通过 `.env` 文件配置：
 
 ```bash
-# 阿里云LLM DashScope 配置（必填）
-# 秘钥管理： https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29597918.J_SEsSjsNv72yRuRFS2VknO.2.61ac133ccTVQLw&tab=demohouse#/api-key
+# LLM 配置（必填）
 DASHSCOPE_API_KEY=your-api-key （配置你自己的秘钥）
-DASHSCOPE_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1  # 不配置则默认会使用新加坡站点
-DASHSCOPE_MODEL=qwen-max
+DASHSCOPE_API_BASE=your-compatible-api-base
+DASHSCOPE_MODEL=your-chat-model
 
 # Milvus 配置
 MILVUS_HOST=localhost
@@ -468,10 +467,7 @@ netstat -ano | findstr :8004  # Monitor MCP
 - [FastAPI 文档](https://fastapi.tiangolo.com/)
 - [LangChain 文档](https://python.langchain.com/)
 - [LangGraph Plan-Execute](https://langchain-ai.github.io/langgraph/tutorials/plan-and-execute/)
-- [阿里云 DashScope](https://dashscope.aliyun.com/)
 - [MCP 协议](https://modelcontextprotocol.io/)
 
 ## 📄 许可证
-author： chief
-
 MIT License

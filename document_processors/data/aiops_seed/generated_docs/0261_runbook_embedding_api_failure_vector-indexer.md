@@ -1,4 +1,4 @@
-# vector-indexer - EmbeddingAPIFailureRateHigh 运维处置知识
+﻿# vector-indexer - EmbeddingAPIFailureRateHigh 运维处置知识
 
 ## 元数据
 
@@ -29,7 +29,7 @@ Embedding API 调用失败率连续 5 分钟超过 5%
 
 ## 推荐日志查询
 
-- `embedding failed OR DashScope OR rate limit`
+- `embedding failed OR rate limit`
 - `429 OR timeout OR invalid api key`
 
 ## 常见根因
@@ -50,7 +50,7 @@ Embedding API 调用失败率连续 5 分钟超过 5%
 
 1. 按错误码统计 embedding 调用失败
 2. 查看请求耗时、批量大小和输入长度
-3. 检查 DashScope 服务状态和账号配额
+3. 检查 embedding 服务状态和账号配额
 4. 确认网络代理和 DNS 解析正常
 
 ## 验证标准

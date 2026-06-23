@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 9900
 
-    # DashScope 配置
+    # LLM 配置
     dashscope_api_key: str = ""  # 默认空字符串，实际使用需从环境变量加载
     dashscope_model: str = "qwen-max"
     dashscope_embedding_model: str = "text-embedding-v4"  # v4 支持多种维度（默认 1024）
@@ -58,7 +58,7 @@ class Settings(BaseSettings):
     chunk_overlap: int = 100
 
     # MCP 服务配置（transport: stdio | sse | streamable-http）
-    # 腾讯云托管 MCP 的 URL 通常含 /sse/，需使用 sse；本地 FastMCP 使用 streamable-http
+    # 托管 MCP 的 URL 通常含 /sse/，需使用 sse；本地 FastMCP 使用 streamable-http
     mcp_cls_transport: str = "streamable-http"
     mcp_cls_url: str = "http://localhost:8003/mcp"
     mcp_monitor_transport: str = "streamable-http"

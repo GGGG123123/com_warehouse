@@ -1,4 +1,4 @@
-# 大规模运维 RAG 资料源清单
+﻿# 大规模运维 RAG 资料源清单
 # type: github_repo | web_page | sitemap
 sources:
   # Kubernetes / Cloud Native
@@ -236,7 +236,7 @@ sources:
     type: sitemap
     domain: aws
     url: https://docs.aws.amazon.com/sitemap_index.xml
-    include_keywords: ["AWSEC2", "EC2", "CloudWatch", "EKS", "RDS", "ELB", "troubleshoot", "monitoring", "logs"]
+    include_keywords: ["CloudCompute", "ComputeInstance", "CloudMonitor", "Kubernetes", "Database", "LoadBalancer", "troubleshoot", "monitoring", "logs"]
   - name: azure_aks_docs
     type: github_repo
     domain: azure

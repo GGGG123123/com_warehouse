@@ -1,4 +1,4 @@
-"""腾讯云 CLS (Cloud Log Service) MCP Server
+"""本地日志 MCP Server
 
 本地实现的 CLS 日志服务 MCP Server，提供日志查询、检索和分析功能。
 """
@@ -51,8 +51,8 @@ load_env_file()
 # ==================== 本地日志 CLS 配置 ====================
 #
 # 默认使用本地日志模式，直接读取 logs/app_YYYY-MM-DD.log。
-# 如果以后要接真实腾讯云 CLS，可以把 CLS_LOG_MODE 改成 tencent，
-# 然后在 search_log 中接入腾讯云 SDK。
+# 如果以后要接真实日志服务，可以把 CLS_LOG_MODE 改成对应模式，
+# 然后在 search_log 中接入对应 SDK。
 CLS_LOG_MODE = os.getenv("CLS_LOG_MODE", "local").lower()
 CLS_LOCAL_TOPIC_ID = os.getenv("CLS_LOCAL_TOPIC_ID", "local-app-logs")
 CLS_LOCAL_TOPIC_NAME = os.getenv("CLS_LOCAL_TOPIC_NAME", "本地应用日志")
@@ -155,7 +155,7 @@ def generate_time_series(base_time: datetime, minutes_offset: int) -> str:
 def get_local_topic(service_name: Optional[str] = None) -> Dict[str, Any]:
     """返回本地日志 topic 信息。
 
-    本地开发环境通常没有真正的腾讯云 CLS topic。
+    本地开发环境通常没有真正的远程日志 topic。
     这里把项目 logs/app_*.log 映射成一个虚拟 topic，让 Agent 可以用同一套 search_log 工具查询。
     """
     return {

@@ -9,7 +9,7 @@
 运行方式:
     直接运行本文件即可，不需要命令行参数。
 
-    C:\\Users\\Administrator\\Desktop\\agent源代码\\super_biz_agent_py-release-2026-05-17\\.venv\\Scripts\\python.exe ^
+    .venv\\Scripts\\python.exe ^
         document_processors\\ocr_md_milvus_chunk_splitter.py
 
 你只需要修改下面“输入输出配置”里的 INPUT_MD_PATH。
@@ -50,8 +50,7 @@ from typing import Any
 # 输入输出配置
 # =============================================================================
 
-# 当前文件所在目录:
-# C:\Users\Administrator\Desktop\agent源代码\super_biz_agent_py-release-2026-05-17\document_processors
+# 当前文件所在目录。
 CURRENT_DIR = Path(__file__).resolve().parent
 
 # document_processors/data 目录。

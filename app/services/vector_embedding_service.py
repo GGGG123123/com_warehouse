@@ -9,15 +9,15 @@ from loguru import logger
 from app.config import config
 
 
-class DashScopeEmbeddings(Embeddings):
-    """阿里云 DashScope Text Embedding (OpenAI 兼容模式)
+class CompatibleEmbeddings(Embeddings):
+    """兼容模式 Text Embedding
     
     实现 LangChain 标准 Embeddings 接口:
     - embed_documents(texts: List[str]) → List[List[float]]: 批量嵌入文档
     - embed_query(text: str) → List[float]: 嵌入单个查询
     """
 
-    # DashScope text-embedding-v4 当前限制单次 input.contents 不能超过 10 条。
+    # 当前 embedding 服务限制单次 input.contents 不能超过 10 条。
     # 在服务内部兜底拆批，避免调用方一次传入过多文档时报 400。
     MAX_DOCUMENT_BATCH_SIZE = 10
 
@@ -28,10 +28,10 @@ class DashScopeEmbeddings(Embeddings):
         dimensions: int = 1024,
     ):
         """
-        初始化 DashScope Embeddings
+        初始化 Embeddings
         
         Args:
-            api_key: DashScope API Key
+            api_key: Embedding API Key
             model: 嵌入模型名称
             dimensions: 向量维度
         """
@@ -48,7 +48,7 @@ class DashScopeEmbeddings(Embeddings):
         # 打印初始化信息
         masked_key = self._mask_api_key(api_key)
         logger.info(
-            f"DashScope Embeddings 初始化完成 - "
+            f"Embeddings 初始化完成 - "
             f"模型: {model}, 维度: {dimensions}, API Key: {masked_key}"
         )
 
@@ -141,7 +141,7 @@ class DashScopeEmbeddings(Embeddings):
 
 
 # 全局单例
-vector_embedding_service = DashScopeEmbeddings(
+vector_embedding_service = CompatibleEmbeddings(
     api_key=config.dashscope_api_key,
     model=config.dashscope_embedding_model,
     dimensions=1024

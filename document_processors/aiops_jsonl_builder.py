@@ -45,8 +45,7 @@ from typing import Any
 # 输入输出配置
 # =============================================================================
 
-# 当前文件所在目录:
-# C:\Users\Administrator\Desktop\agent源代码\super_biz_agent_py-release-2026-05-17\document_processors
+# 当前文件所在目录。
 CURRENT_DIR = Path(__file__).resolve().parent
 
 # document_processors/data 目录。

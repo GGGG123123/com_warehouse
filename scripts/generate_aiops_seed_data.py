@@ -852,7 +852,7 @@ SCENARIOS = [
             'histogram_quantile(0.95, sum(rate(embedding_request_duration_seconds_bucket[5m])) by (le))',
         ),
         log_queries=(
-            'embedding failed OR DashScope OR rate limit',
+            'embedding failed OR rate limit',
             '429 OR timeout OR invalid api key',
         ),
         root_causes=(
@@ -870,7 +870,7 @@ SCENARIOS = [
         diagnosis_steps=(
             "按错误码统计 embedding 调用失败",
             "查看请求耗时、批量大小和输入长度",
-            "检查 DashScope 服务状态和账号配额",
+            "检查 embedding 服务状态和账号配额",
             "确认网络代理和 DNS 解析正常",
         ),
         verification=(

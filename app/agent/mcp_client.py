@@ -220,7 +220,7 @@ def suggest_mcp_transport(url: str, transport: str) -> str | None:
     ):
         return (
             f"MCP URL 含 /sse/ 但 transport={transport!r}，"
-            "腾讯云等托管端点应使用 transport=sse"
+            "托管端点应使用 transport=sse"
         )
     if transport == "sse" and "/mcp" in lower_url and "/sse" not in lower_url:
         return (

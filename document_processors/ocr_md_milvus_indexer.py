@@ -39,7 +39,7 @@ DATA_DIR = CURRENT_DIR / "data"
 # 这个文件由 ocr_md_milvus_chunk_splitter.py 生成。
 INPUT_CHUNKS_PATH = DATA_DIR / "ocr_md" / "ocr_md_milvus_chunks.jsonl"
 
-# DashScope text-embedding-v4 当前批量条数限制比较小。
+# 当前 embedding 服务批量条数限制比较小。
 # 你的项目之前报过 batch size 不能超过 10，所以这里固定用 10。
 BATCH_SIZE = 10
 

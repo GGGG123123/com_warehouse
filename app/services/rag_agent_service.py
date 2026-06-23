@@ -30,9 +30,7 @@ from app.agent.mcp_client import (
     suggest_mcp_transport,
 )
 
-# 阿里千问大模型和langchain集成参考： https://docs.langchain.com/oss/python/integrations/chat/qwen
-# 注意：需要配置环境变量 DASHSCOPE_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1 否则默认访问的是新加坡站点
-# 同时也需要配置环境变量 DASHSCOPE_API_KEY=your_api_key
+# 需要配置模型服务相关环境变量，例如 API Key 和兼容接口地址。
 
 
 class AgentState(TypedDict):

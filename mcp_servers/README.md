@@ -99,23 +99,23 @@ search_historical_tickets(
 
 当前返回模拟数据。接入真实 API 步骤：
 
-**腾讯云 CLS：**
+**日志服务：**
 ```bash
-# 安装 SDK
-pip install tencentcloud-sdk-python
+# 安装对应 SDK
+pip install your-log-service-sdk
 
 # 配置环境变量
-export TENCENTCLOUD_SECRET_ID="your-id"
-export TENCENTCLOUD_SECRET_KEY="your-key"
+export LOG_SERVICE_SECRET_ID="your-id"
+export LOG_SERVICE_SECRET_KEY="your-key"
 
 # 在 cls_server.py 中集成
-from tencentcloud.cls.v20201016 import cls_client
+from your_log_service import client
 ```
 
 **其他监控系统：**
 - Prometheus
 - Grafana
-- 云监控（腾讯云/阿里云/AWS）
+- 云监控或自建监控平台
 - 自建监控平台
 
 ### 自定义 Mock 数据

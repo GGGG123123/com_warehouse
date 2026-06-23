@@ -44,7 +44,7 @@ while ($true) {
                 Write-Host "错误详情: $($response.data.error)" -ForegroundColor Red
 
                 # TODO: 这里可以添加告警通知
-                # 例如: 发送企业微信/钉钉消息
+                # 例如: 发送 Webhook 消息
 
                 # 重置计数器（避免重复告警）
                 $failCount = 0

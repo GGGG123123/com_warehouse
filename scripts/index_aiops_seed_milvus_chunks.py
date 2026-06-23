@@ -28,7 +28,7 @@ from app.services.vector_store_manager import vector_store_manager
 INPUT_CHUNKS_PATH = Path("data/aiops_seed/aiops_seed_milvus_chunks.jsonl")
 
 # 控制单次 embedding 和入库的批大小。
-# DashScope text-embedding-v4 当前单次最多允许 10 条 input.contents。
+# 当前 embedding 服务单次批量条数限制较小。
 BATCH_SIZE = 10
 
 

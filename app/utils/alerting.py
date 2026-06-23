@@ -35,16 +35,16 @@ class AlertNotifier:
         logger.error(f"[ALERT] {error_type}: {message}", extra=alert_data)
 
         # TODO: 根据需要添加其他通知渠道
-        # 1. 企业微信/钉钉机器人
-        # self._send_to_wecom(alert_data)
+        # 1. Webhook 机器人
+        # self._send_to_webhook(alert_data)
         # 2. 邮件通知
         # self._send_email(alert_data)
         # 3. 短信通知(紧急情况)
         # self._send_sms(alert_data)
 
-    def _send_to_wecom(self, alert_data: dict):
-        """发送到企业微信机器人 (示例)"""
-        webhook_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY"
+    def _send_to_webhook(self, alert_data: dict):
+        """发送到 Webhook 机器人 (示例)"""
+        webhook_url = "https://example.com/webhook/YOUR_KEY"
 
         try:
             content = f"""**系统告警**
@@ -61,7 +61,7 @@ class AlertNotifier:
 
             httpx.post(webhook_url, json=payload, timeout=5.0)
         except Exception as e:
-            logger.warning(f"企业微信通知失败: {e}")
+            logger.warning(f"Webhook 通知失败: {e}")
 
 
 # 全局通知器实例

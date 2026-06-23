@@ -1,4 +1,4 @@
-# EmbeddingAPIFailureRateHigh 告警规则与诊断提示
+﻿# EmbeddingAPIFailureRateHigh 告警规则与诊断提示
 
 ## 元数据
 
@@ -23,7 +23,7 @@ Embedding API 调用失败率连续 5 分钟超过 5%
 
 ## 推荐日志查询模板
 
-- `embedding failed OR DashScope OR rate limit`
+- `embedding failed OR rate limit`
 - `429 OR timeout OR invalid api key`
 
 ## 根因候选
