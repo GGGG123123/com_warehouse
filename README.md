@@ -271,6 +271,8 @@ super_biz_agent_py/
 MODEL_API_KEY=your-api-key
 MODEL_API_BASE=your-compatible-api-base
 MODEL_NAME=your-chat-model
+EMBEDDING_MODEL=your-embedding-model
+RAG_MODEL=your-rag-model
 
 # Milvus 配置
 MILVUS_HOST=localhost

@@ -26,7 +26,7 @@ python scripts/generate_aiops_seed_data.py
 
 ## 写入向量库
 
-确认 Milvus 已启动、`.env` 中已配置 `DASHSCOPE_API_KEY` 后运行：
+确认 Milvus 已启动、`.env` 中已配置 `MODEL_API_KEY` 和 `MODEL_API_BASE` 后运行：
 
 ```bash
 python scripts/index_generated_aiops_docs.py

@@ -11,7 +11,7 @@
 
     2. Milvus 已经启动。
 
-    3. 项目 .env 里已经配置 DASHSCOPE_API_KEY。
+    3. 项目 .env 里已经配置 MODEL_API_KEY 和 MODEL_API_BASE。
 
     4. 推荐使用项目虚拟环境运行:
         .venv\\Scripts\\python.exe document_processors\\aiops_milvus_indexer.py
@@ -112,9 +112,9 @@ def import_project_dependencies() -> tuple[Any, Any]:
             "document_processors\\aiops_milvus_indexer.py"
         ) from exc
     except ValueError as exc:
-        # vector_embedding_service 在导入时会检查 DASHSCOPE_API_KEY。
+        # vector_embedding_service 在导入时会检查模型服务配置。
         raise RuntimeError(
-            "项目配置不完整，请检查 .env 里的 DASHSCOPE_API_KEY 是否已配置。"
+            "项目配置不完整，请检查 .env 里的 MODEL_API_KEY 和 MODEL_API_BASE 是否已配置。"
         ) from exc
     except Exception as exc:
         # 这里可能是 Milvus 没启动，也可能是连接参数不对。

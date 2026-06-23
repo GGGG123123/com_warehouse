@@ -3,7 +3,7 @@
 from typing import List
 
 from langchain_core.embeddings import Embeddings
-from openai import OpenAI
+from openai import OpenAI as CompatibleClient
 from loguru import logger
 
 from app.config import config
@@ -24,7 +24,8 @@ class CompatibleEmbeddings(Embeddings):
     def __init__(
         self,
         api_key: str,
-        model: str = "text-embedding-v4",
+        model: str,
+        base_url: str,
         dimensions: int = 1024,
     ):
         """
@@ -35,12 +36,14 @@ class CompatibleEmbeddings(Embeddings):
             model: 嵌入模型名称
             dimensions: 向量维度
         """
-        if not api_key or api_key == "your-api-key-here":
-            raise ValueError("请设置环境变量 DASHSCOPE_API_KEY")
+        if not api_key or "replace_with" in api_key:
+            raise ValueError("请设置环境变量 MODEL_API_KEY")
+        if not base_url or "replace_with" in base_url:
+            raise ValueError("请设置环境变量 MODEL_API_BASE")
         
-        self.client = OpenAI(
+        self.client = CompatibleClient(
             api_key=api_key,
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+            base_url=base_url,
         )
         self.model = model
         self.dimensions = dimensions
@@ -142,7 +145,8 @@ class CompatibleEmbeddings(Embeddings):
 
 # 全局单例
 vector_embedding_service = CompatibleEmbeddings(
-    api_key=config.dashscope_api_key,
-    model=config.dashscope_embedding_model,
+    api_key=config.model_api_key,
+    model=config.embedding_model,
+    base_url=config.model_api_base,
     dimensions=1024
 )

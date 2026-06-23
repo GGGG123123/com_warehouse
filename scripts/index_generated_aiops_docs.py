@@ -2,7 +2,7 @@
 
 运行前要求:
     1. Milvus 已启动；
-    2. `.env` 中配置了 DASHSCOPE_API_KEY；
+    2. `.env` 中配置了 MODEL_API_KEY 和 MODEL_API_BASE；
     3. 已执行 `python scripts/generate_aiops_seed_data.py` 生成文档。
 
 运行:

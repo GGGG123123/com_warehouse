@@ -13,7 +13,6 @@ dependencies = [
     "langchain-core>=0.1.0",
     "langchain-openai>=1.0.0",
     "langgraph>=0.0.40",
-    "dashscope>=1.14.0",
     "openai>=1.10.0",
     "pymilvus>=2.3.5",
     "pydantic>=2.5.0,<3.0.0",
@@ -30,7 +29,6 @@ dependencies = [
     "langchain-text-splitters>=1.1.0",
     "langchain-mcp-adapters>=0.2.1",
     "fastmcp>=2.14.0",
-    "langchain-qwq>=0.3.4",
 ]
 
 [project.optional-dependencies]
@@ -165,7 +163,7 @@ strict_equality = true
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = ["dashscope.*", "langchain.*", "pymilvus.*"]
+module = ["langchain.*", "pymilvus.*"]
 ignore_missing_imports = true
 
 [tool.bandit]

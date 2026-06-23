@@ -24,10 +24,11 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 9900
 
-    # LLM 配置
-    dashscope_api_key: str = ""  # 默认空字符串，实际使用需从环境变量加载
-    dashscope_model: str = "qwen-max"
-    dashscope_embedding_model: str = "text-embedding-v4"  # v4 支持多种维度（默认 1024）
+    # 大模型服务配置
+    model_api_key: str = ""
+    model_api_base: str = ""
+    model_name: str = "replace_with_your_chat_model"
+    embedding_model: str = "replace_with_your_embedding_model"
 
     # Milvus 配置
     milvus_host: str = "localhost"
@@ -36,11 +37,11 @@ class Settings(BaseSettings):
 
     # RAG 配置
     rag_top_k: int = 3
-    rag_model: str = "qwen-max"  # 使用快速响应模型，不带扩展思考
+    rag_model: str = "replace_with_your_rag_model"
 
     # 多模态输入配置
     # 用于理解用户本轮输入里的图片、截图、日志/Markdown 等附件。
-    multimodal_model: str = "qwen-vl-plus"
+    multimodal_model: str = "replace_with_your_multimodal_model"
     multimodal_max_file_bytes: int = 10 * 1024 * 1024
     multimodal_max_text_chars: int = 12000
 

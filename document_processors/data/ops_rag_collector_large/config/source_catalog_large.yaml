@@ -231,24 +231,24 @@ sources:
     url: https://github.com/opentofu/opentofu.org.git
     include_ext: [".md", ".mdx", ".yaml", ".yml"]
 
-  # Cloud docs: selective sitemap crawl
-  - name: aws_docs_ec2
+  # Cloud docs: optional placeholder sources
+  - name: cloud_compute_docs
     type: sitemap
-    domain: aws
-    url: https://docs.aws.amazon.com/sitemap_index.xml
+    domain: cloud
+    url: https://example.com/cloud/compute-sitemap.xml
     include_keywords: ["CloudCompute", "ComputeInstance", "CloudMonitor", "Kubernetes", "Database", "LoadBalancer", "troubleshoot", "monitoring", "logs"]
-  - name: azure_aks_docs
+  - name: cloud_kubernetes_docs
     type: github_repo
-    domain: azure
-    url: https://github.com/MicrosoftDocs/azure-docs.git
+    domain: cloud
+    url: https://example.com/cloud/kubernetes-docs.git
     include_ext: [".md", ".yml", ".yaml"]
-    include_keywords: ["articles/aks", "articles/azure-monitor", "articles/load-balancer", "troubleshoot"]
-  - name: google_cloud_docs
+    include_keywords: ["kubernetes", "monitoring", "load-balancer", "troubleshoot"]
+  - name: cloud_operations_docs
     type: github_repo
-    domain: gcp
-    url: https://github.com/GoogleCloudPlatform/cloud-docs-samples.git
+    domain: cloud
+    url: https://example.com/cloud/operations-docs.git
     include_ext: [".md", ".yaml", ".yml", ".json"]
-    include_keywords: ["kubernetes", "monitoring", "logging", "cloud-sql", "compute"]
+    include_keywords: ["kubernetes", "monitoring", "logging", "database", "compute"]
 
   # Security / TLS / Network
   - name: cert_manager

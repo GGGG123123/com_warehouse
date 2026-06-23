@@ -6,11 +6,11 @@ Replanner 节点：重新规划或生成最终响应
 from textwrap import dedent
 from typing import Dict, Any, List
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_qwq import ChatQwen
 from pydantic import BaseModel, Field
 from loguru import logger
 
 from app.config import config
+from app.core.llm_factory import llm_factory
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from app.agent.mcp_client import get_mcp_client_with_retry
 from .state import PlanExecuteState
@@ -133,9 +133,8 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
     MAX_STEPS = 8
     if len(past_steps) >= MAX_STEPS:
         logger.warning(f"已执行 {len(past_steps)} 个步骤，超过最大限制 {MAX_STEPS}，强制生成最终响应")
-        llm = ChatQwen(
+        llm = llm_factory.create_chat_model(
             model=config.rag_model,
-            api_key=config.dashscope_api_key,
             temperature=0
         )
         response_update = await _generate_response(state, llm)
@@ -164,9 +163,8 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
         tools_description = "无法获取工具列表"
 
     # 创建 LLM
-    llm = ChatQwen(
+    llm = llm_factory.create_chat_model(
         model=config.rag_model,
-        api_key=config.dashscope_api_key,
         temperature=0
     )
 
@@ -281,7 +279,7 @@ async def replanner(state: PlanExecuteState) -> Dict[str, Any]:
         }
 
 
-async def _generate_response(state: PlanExecuteState, llm: ChatQwen) -> Dict[str, Any]:
+async def _generate_response(state: PlanExecuteState, llm: Any) -> Dict[str, Any]:
     """生成最终响应"""
     logger.info("生成最终响应...")
 

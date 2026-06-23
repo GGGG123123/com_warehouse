@@ -11,7 +11,7 @@
 
     2. Milvus 已启动。
 
-    3. 项目 .env 中 DASHSCOPE_API_KEY 已配置。
+    3. 项目 .env 中 MODEL_API_KEY 和 MODEL_API_BASE 已配置。
 
     4. 使用项目虚拟环境运行。
 
@@ -82,7 +82,7 @@ def import_project_dependencies() -> tuple[Any, Any]:
         ) from exc
     except ValueError as exc:
         raise RuntimeError(
-            "项目配置不完整，请检查 .env 里的 DASHSCOPE_API_KEY 是否已配置。"
+            "项目配置不完整，请检查 .env 里的 MODEL_API_KEY 和 MODEL_API_BASE 是否已配置。"
         ) from exc
     except Exception as exc:
         raise RuntimeError(

@@ -1109,7 +1109,7 @@ class SuperBizAgentApp {
             max-width: 300px;
         `;
 
-        // 根据类型设置颜色（Google Material Design配色）
+        // 根据类型设置颜色
         const colors = {
             info: '#1a73e8',
             success: '#34a853',

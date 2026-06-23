@@ -3,7 +3,7 @@
 运行前要求:
     1. 已执行 `python scripts/split_aiops_seed_for_milvus.py`；
     2. Milvus 已启动；
-    3. `.env` 中配置了 DASHSCOPE_API_KEY。
+    3. `.env` 中配置了 MODEL_API_KEY 和 MODEL_API_BASE。
 
 运行:
     python scripts/index_aiops_seed_milvus_chunks.py

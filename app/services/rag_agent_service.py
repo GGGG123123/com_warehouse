@@ -1,7 +1,6 @@
 """RAG Agent 服务 - 基于 LangGraph 的智能代理
 
-使用 langchain_qwq 的 ChatQwen 原生集成，
-支持真正的流式输出和更好的模型适配。
+支持流式输出和工具调用。
 """
 
 from typing import Annotated, Any, AsyncGenerator, Dict, Sequence
@@ -18,9 +17,9 @@ from langgraph.checkpoint.memory import InMemorySaver, PersistentDict
 from langgraph.graph.message import REMOVE_ALL_MESSAGES, add_messages
 from loguru import logger
 from typing_extensions import TypedDict
-from langchain_qwq import ChatQwen
 
 from app.config import config
+from app.core.llm_factory import llm_factory
 from app.services.structured_memory_service import structured_memory_service
 from app.tools import DEFAULT_LOCAL_AGENT_TOOLS
 from app.agent.mcp_client import (
@@ -86,7 +85,7 @@ class ShortTermMemoryTrimMiddleware(AgentMiddleware):
 
 
 class RagAgentService:
-    """RAG Agent 服务 - 使用 LangGraph + ChatQwen 原生集成"""
+    """RAG Agent 服务 - 使用 LangGraph 集成"""
 
     def __init__(self, streaming: bool = True):
         """初始化 RAG Agent 服务
@@ -99,9 +98,8 @@ class RagAgentService:
         self.system_prompt = self._build_system_prompt()
 
 
-        self.model = ChatQwen(
+        self.model = llm_factory.create_chat_model(
             model=self.model_name,
-            api_key=config.dashscope_api_key,
             temperature=0.7,
             streaming=streaming,
         )
@@ -121,7 +119,7 @@ class RagAgentService:
         self.agent = None
         self._agent_initialized = False
 
-        logger.info(f"RAG Agent 服务初始化完成 (ChatQwen), model={self.model_name}, streaming={streaming}")
+        logger.info(f"RAG Agent 服务初始化完成, model={self.model_name}, streaming={streaming}")
 
     async def _initialize_agent(self):
         """异步初始化 Agent（包括 MCP 工具）"""
