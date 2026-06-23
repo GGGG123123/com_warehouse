@@ -73,7 +73,7 @@ uv pip install -e .
 pip install -e .
 
 # 3. 编辑配置文件
-# 首次使用需要编辑 .env 文件，填入你的 DASHSCOPE_API_KEY
+# 首次使用需要编辑 .env 文件，填入你的模型服务 API Key
 vim .env  # 或使用其他编辑器
 
 # 4. 一键初始化（启动 Docker + 服务 + 上传文档）
@@ -108,7 +108,7 @@ python -m venv .venv
 pip install -e .
 
 # 3. 编辑配置文件
-# 使用记事本或其他编辑器打开 .env 文件，填入你的 DASHSCOPE_API_KEY
+# 使用记事本或其他编辑器打开 .env 文件，填入你的模型服务 API Key
 notepad .env
 
 # 4. 启动 Docker Desktop
@@ -267,10 +267,10 @@ super_biz_agent_py/
 通过 `.env` 文件配置：
 
 ```bash
-# LLM 配置（必填）
-DASHSCOPE_API_KEY=your-api-key （配置你自己的秘钥）
-DASHSCOPE_API_BASE=your-compatible-api-base
-DASHSCOPE_MODEL=your-chat-model
+# LLM 配置（必填，具体变量名以 .env.example 为准）
+MODEL_API_KEY=your-api-key
+MODEL_API_BASE=your-compatible-api-base
+MODEL_NAME=your-chat-model
 
 # Milvus 配置
 MILVUS_HOST=localhost
@@ -412,8 +412,8 @@ taskkill /F /PID <PID>
 ### API Key 错误
 ```bash
 # 检查环境变量
-cat .env | grep DASHSCOPE_API_KEY    # Linux/macOS
-type .env | findstr DASHSCOPE_API_KEY  # Windows
+cat .env | grep API_KEY    # Linux/macOS
+type .env | findstr API_KEY  # Windows
 ```
 
 ### Milvus 连接失败
